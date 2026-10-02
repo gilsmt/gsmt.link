@@ -266,14 +266,15 @@ export default async function HomePage({
                             </div>
                             <T>
                                 <p className="text-foreground text-xs">
-                                    Created the Cache App, a browser-first app
-                                    that pulls bookmarks and saved content from
-                                    different platforms into one searchable
-                                    workspace. I built the ingestion pipelines,
-                                    normalized metadata across sources, and made
-                                    search and filtering fast on the client. A
+                                    Created the Cache App, a browser-first
+                                    commercial product that pulls bookmarks and
+                                    saved content from different platforms into
+                                    one searchable AI workspace. I built the
+                                    data ingestion pipelines, normalized
+                                    metadata across sources, and made search and
+                                    filtering fast on the client. A
                                     Postgres-backed sync layer keeps it
-                                    responsive even with a lot of saved content.
+                                    responsive even with a lot of content.
                                 </p>
                             </T>
                         </div>
