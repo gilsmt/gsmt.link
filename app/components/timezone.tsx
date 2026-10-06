@@ -26,7 +26,7 @@ const Timezone = () => {
                 <h3 className="truncate font-semibold text-muted-foreground text-xs">
                     <T>Your timezone</T>
                 </h3>
-                <div className="flex items-center justify-between rounded-xl border p-3">
+                <div className="flex items-center justify-between gap-2 rounded-xl border p-3">
                     <div className="flex items-center space-x-3">
                         <Clock timezone={dayjs.tz.guess()} />
                         <div className="flex flex-col space-y-1">
@@ -42,7 +42,7 @@ const Timezone = () => {
                         <span className="font-medium text-muted-foreground/90 text-xs">
                             {dayjs().format("h:mm A")}
                         </span>
-                        <span className="text-muted-foreground/75 text-xs">
+                        <span className="truncate text-muted-foreground/75 text-xs">
                             {dayjs().format("ddd, MMM DD, YYYY")}
                         </span>
                     </div>
@@ -52,7 +52,7 @@ const Timezone = () => {
                 <h3 className="truncate font-semibold text-muted-foreground text-xs">
                     <T>My timezone</T>
                 </h3>
-                <div className="flex items-center justify-between rounded-xl border p-3">
+                <div className="flex items-center justify-between gap-2 rounded-xl border p-3">
                     <div className="flex items-center space-x-3">
                         <Clock timezone={BASE_TIMEZONE} />
                         <div className="flex flex-col space-y-1">
@@ -68,7 +68,7 @@ const Timezone = () => {
                         <span className="font-medium text-muted-foreground/90 text-xs">
                             {dayjs().tz(BASE_TIMEZONE).format("h:mm A")}
                         </span>
-                        <span className="text-muted-foreground/75 text-xs">
+                        <span className="truncate text-muted-foreground/75 text-xs">
                             {dayjs()
                                 .tz(BASE_TIMEZONE)
                                 .format("ddd, MMM DD, YYYY")}
