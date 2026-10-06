@@ -8,7 +8,7 @@ const LocaleSelector = () => {
     const { locale, locales, getLocaleProperties } = useLocaleSelector();
     const router = useRouter();
 
-    if (!locales?.length) {
+    if (!locales.length) {
         return null;
     }
 
@@ -33,11 +33,11 @@ const LocaleSelector = () => {
                 )}
                 onChange={handleChange}
                 title="Change language"
-                value={locale ?? "en"}
+                value={locale}
             >
                 {locales.map((loc) => {
                     const props = getLocaleProperties(loc);
-                    const name = props?.nativeLanguageName ?? loc;
+                    const name = props.nativeLanguageName;
                     const displayName =
                         name.charAt(0).toUpperCase() + name.slice(1);
                     return (
