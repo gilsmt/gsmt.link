@@ -26,7 +26,7 @@ import { PageShell } from "@/components/page-shell";
 import { Signature } from "@/components/signature";
 import { Timezone } from "@/components/timezone";
 import { TodayDate } from "@/components/today-date";
-import ProfilePicture from "@/public/pfp.jpg";
+import ProfilePicture from "../../public/pfp.jpg";
 
 export const metadata: Metadata = {
     title: "Gilberto S.",
