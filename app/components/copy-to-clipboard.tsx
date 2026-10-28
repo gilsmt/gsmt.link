@@ -2,13 +2,13 @@
 
 import { Slot } from "@radix-ui/react-slot";
 import copy from "copy-to-clipboard";
-import * as React from "react";
+import { type ComponentProps, useState } from "react";
 
 const CopyToClipboard = ({
     text,
     ...props
-}: React.ComponentProps<typeof Slot> & { text: string }) => {
-    const [copied, setCopied] = React.useState(false);
+}: ComponentProps<typeof Slot> & { text: string }) => {
+    const [copied, setCopied] = useState(false);
 
     const copyHandler = async () => {
         await copy(text);

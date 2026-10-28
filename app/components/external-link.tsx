@@ -10,7 +10,7 @@ const ExternalLink = ({
     children: ReactNode;
 }) => (
     <Link
-        className="relative flex w-fit items-center gap-x-1 text-muted-foreground text-xs hover:underline"
+        className="text-muted-foreground relative flex w-fit items-center gap-x-1 text-xs hover:underline"
         draggable={false}
         href={href}
         rel="noreferrer"

@@ -1,4 +1,3 @@
-import { Carousel } from "@components/carousel";
 import { getLocales, T } from "gt-next";
 import {
     Braces,
@@ -15,17 +14,18 @@ import {
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import * as React from "react";
-import { CopyToClipboard } from "@/app/components/copy-to-clipboard";
-import { CopyrightLine } from "@/app/components/copyright-line";
-import { ExternalLink } from "@/app/components/external-link";
-import { Header } from "@/app/components/header";
-import { Line } from "@/app/components/line";
-import { Monogram } from "@/app/components/monogram";
-import { PageShell } from "@/app/components/page-shell";
-import { Signature } from "@/app/components/signature";
-import { Timezone } from "@/app/components/timezone";
-import { TodayDate } from "@/app/components/today-date";
+import { Suspense } from "react";
+import { Carousel } from "@/components/carousel";
+import { CopyToClipboard } from "@/components/copy-to-clipboard";
+import { CopyrightLine } from "@/components/copyright-line";
+import { ExternalLink } from "@/components/external-link";
+import { Header } from "@/components/header";
+import { Line } from "@/components/line";
+import { Monogram } from "@/components/monogram";
+import { PageShell } from "@/components/page-shell";
+import { Signature } from "@/components/signature";
+import { Timezone } from "@/components/timezone";
+import { TodayDate } from "@/components/today-date";
 import ProfilePicture from "@/public/pfp.jpg";
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ export default async function HomePage({
     return (
         <PageShell>
             <Header locale={locale} />
-            <section className="container relative mt-16 flex w-full items-end justify-between">
+            <section className="relative container mt-16 flex w-full items-end justify-between">
                 <Line className="-top-20 left-5" variant="vertical" />
                 <Line className="-top-20 right-5" variant="vertical" />
                 <Line className="-top-14" />
@@ -55,10 +55,10 @@ export default async function HomePage({
                 <Line className="-bottom-2" />
                 <div className="flex w-full items-end justify-between">
                     <div className="flex flex-col gap-2">
-                        <h1 className="whitespace-nowrap font-medium font-serif text-base text-foreground">
+                        <h1 className="text-foreground font-serif text-base font-medium whitespace-nowrap">
                             Gilberto S
                         </h1>
-                        <span className="relative whitespace-pre-wrap font-serif text-foreground text-xs">
+                        <span className="text-foreground relative font-serif text-xs whitespace-pre-wrap">
                             <T>
                                 <span className="mr-0.5 opacity-60">IPA</span>
                                 &nbsp;
@@ -72,7 +72,7 @@ export default async function HomePage({
                         </span>
                     </div>
                     <div className="flex items-end justify-end gap-4">
-                        <div className="flex items-center justify-end gap-1 whitespace-pre-wrap font-serif text-foreground text-xs">
+                        <div className="text-foreground flex items-center justify-end gap-1 font-serif text-xs whitespace-pre-wrap">
                             <MapPin className="size-3.5" />
                             <T context="Location">Barcelona, Spain</T>
                         </div>
@@ -89,7 +89,7 @@ export default async function HomePage({
                 <div className="group flex flex-col items-center gap-4 md:flex-row">
                     <div className="relative flex h-fit w-full items-center md:w-fit">
                         <Link
-                            className="flex h-9 w-full items-center justify-center whitespace-nowrap rounded-3xl border bg-transparent pr-11 pl-4 text-sm hover:opacity-100 active:opacity-50 group-hover:opacity-75 md:w-fit"
+                            className="flex h-9 w-full items-center justify-center rounded-3xl border bg-transparent pr-11 pl-4 text-sm whitespace-nowrap group-hover:opacity-75 hover:opacity-100 active:opacity-50 md:w-fit"
                             href="mailto:gsmt.dev+hi@gmail.com"
                             title="Email"
                         >
@@ -102,7 +102,7 @@ export default async function HomePage({
                         <CopyToClipboard text="gsmt.dev@gmail.com">
                             <button
                                 aria-label="Copy email"
-                                className="group/btn absolute right-2 z-10 inline-flex size-5 items-center justify-center rounded-[40%] bg-card p-3 hover:opacity-100 active:opacity-50 group-hover:opacity-75"
+                                className="group/btn bg-card absolute right-2 z-10 inline-flex size-5 items-center justify-center rounded-[40%] p-3 group-hover:opacity-75 hover:opacity-100 active:opacity-50"
                                 title="Copy"
                                 type="button"
                             >
@@ -115,7 +115,7 @@ export default async function HomePage({
                         </CopyToClipboard>
                     </div>
                     <Link
-                        className="flex h-9 w-full items-center justify-center whitespace-nowrap rounded-3xl border bg-transparent px-4 text-sm hover:opacity-100 active:opacity-50 group-hover:opacity-75 md:w-fit"
+                        className="flex h-9 w-full items-center justify-center rounded-3xl border bg-transparent px-4 text-sm whitespace-nowrap group-hover:opacity-75 hover:opacity-100 active:opacity-50 md:w-fit"
                         href="https://github.com/gilsmt"
                         rel="noreferrer"
                         target="_blank"
@@ -125,7 +125,7 @@ export default async function HomePage({
                         GitHub
                     </Link>
                     <Link
-                        className="flex h-9 w-full items-center justify-center whitespace-nowrap rounded-3xl border bg-transparent px-4 text-sm hover:opacity-100 active:opacity-50 group-hover:opacity-75 md:w-fit"
+                        className="flex h-9 w-full items-center justify-center rounded-3xl border bg-transparent px-4 text-sm whitespace-nowrap group-hover:opacity-75 hover:opacity-100 active:opacity-50 md:w-fit"
                         href="https://twitter.com/gsmmtt"
                         rel="noreferrer"
                         target="_blank"
@@ -138,12 +138,12 @@ export default async function HomePage({
             </section>
             <section className="container mt-20 flex flex-col space-y-6">
                 <div className="flex items-center justify-between">
-                    <h2 className="flex-1 truncate font-semibold text-muted-foreground text-xs">
+                    <h2 className="text-muted-foreground flex-1 truncate text-xs font-semibold">
                         <T>Today</T>
                         <span className="ml-3 inline-block font-serif opacity-50">
-                            <React.Suspense fallback={<span>—</span>}>
+                            <Suspense fallback={<span>—</span>}>
                                 <TodayDate />
-                            </React.Suspense>
+                            </Suspense>
                         </span>
                     </h2>
                     <div className="flex items-center justify-end space-x-3">
@@ -171,6 +171,13 @@ export default async function HomePage({
                 </T>
                 <T>
                     <p className="text-foreground text-sm">
+                        I primarily specialize in web technologies, including:
+                        Web Performance · Accessible Interfaces · Design Systems
+                        · Data visualizations · AI Engineering
+                    </p>
+                </T>
+                <T>
+                    <p className="text-foreground text-sm">
                         I&apos;ve built data pipelines{" "}
                         <Braces className="inline-block size-4 opacity-50" />,
                         web apps and APIs, native applications, shaders, fractal
@@ -193,20 +200,20 @@ export default async function HomePage({
             </section>
             <section className="container mt-20">
                 <T>
-                    <h2 className="mt-3 mb-4 flex-1 truncate font-semibold text-muted-foreground text-xs">
+                    <h2 className="text-muted-foreground mt-3 mb-4 flex-1 truncate text-xs font-semibold">
                         Experience
                     </h2>
-                    <p className="mb-4 text-foreground text-sm">
+                    <p className="text-foreground mb-4 text-sm">
                         Over the past years, I&apos;ve been super lucky to work
                         with some amazing people on a variety of great projects,
                         ranging from open-source libraries to large-scale
                         applications that are both challenging and rewarding.
                     </p>
                 </T>
-                <React.Suspense>
+                <Suspense>
                     <Carousel>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="font-medium text-muted-foreground text-xs">
+                            <h2 className="text-muted-foreground text-xs font-medium">
                                 ItemIQ
                             </h2>
                             <ExternalLink href="https://item-iq.com/">
@@ -231,7 +238,7 @@ export default async function HomePage({
                             </T>
                         </div>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="font-medium text-muted-foreground text-xs">
+                            <h2 className="text-muted-foreground text-xs font-medium">
                                 Infactura
                             </h2>
                             <ExternalLink href="https://infactura.com">
@@ -253,7 +260,7 @@ export default async function HomePage({
                             </T>
                         </div>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="font-medium text-muted-foreground text-xs">
+                            <h2 className="text-muted-foreground text-xs font-medium">
                                 Cache App
                             </h2>
                             <div className="flex flex-wrap gap-x-4 gap-y-2">
@@ -279,7 +286,7 @@ export default async function HomePage({
                             </T>
                         </div>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="font-medium text-muted-foreground text-xs">
+                            <h2 className="text-muted-foreground text-xs font-medium">
                                 Accenture summer internship
                             </h2>
                             <T>
@@ -293,7 +300,7 @@ export default async function HomePage({
                             </T>
                         </div>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="font-medium text-muted-foreground text-xs">
+                            <h2 className="text-muted-foreground text-xs font-medium">
                                 MinuteDebate
                             </h2>
                             <div className="flex flex-wrap gap-x-4 gap-y-2">
@@ -319,11 +326,11 @@ export default async function HomePage({
                             </T>
                         </div>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="font-medium text-muted-foreground text-xs">
-                                gsmt.link
+                            <h2 className="text-muted-foreground text-xs font-medium">
+                                gsmt.dev
                             </h2>
                             <div className="flex flex-wrap gap-x-4 gap-y-2">
-                                <ExternalLink href="https://gsmt.link">
+                                <ExternalLink href="https://gsmt.dev">
                                     <T>Visit</T>
                                 </ExternalLink>
                                 <ExternalLink href="https://github.com/gilsmt/gsmt">
@@ -343,7 +350,7 @@ export default async function HomePage({
                         </div>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
                             <T>
-                                <h2 className="font-medium text-muted-foreground text-xs">
+                                <h2 className="text-muted-foreground text-xs font-medium">
                                     Developer tools & UI utilities
                                 </h2>
                             </T>
@@ -376,7 +383,7 @@ export default async function HomePage({
                         </div>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
                             <T>
-                                <h2 className="font-medium text-muted-foreground text-xs">
+                                <h2 className="text-muted-foreground text-xs font-medium">
                                     Creative coding & simulations
                                 </h2>
                             </T>
@@ -407,40 +414,40 @@ export default async function HomePage({
                             </T>
                         </div>
                     </Carousel>
-                </React.Suspense>
+                </Suspense>
             </section>
-            <React.Suspense
+            <Suspense
                 fallback={
                     <section className="container mt-20 grid w-full gap-6 md:grid-cols-2">
-                        <div className="h-24 rounded-xl border border-border" />
-                        <div className="h-24 rounded-xl border border-border" />
+                        <div className="border-border h-24 rounded-xl border" />
+                        <div className="border-border h-24 rounded-xl border" />
                     </section>
                 }
             >
                 <Timezone />
-            </React.Suspense>
+            </Suspense>
             <footer className="container mt-16 flex flex-row items-center justify-between">
                 <div className="flex flex-col space-y-1">
-                    <React.Suspense
+                    <Suspense
                         fallback={
-                            <span className="text-[10px] text-muted-foreground/60">
+                            <span className="text-muted-foreground/60 text-[10px]">
                                 <T>@ Gilberto. All rights reserved.</T>
                             </span>
                         }
                     >
                         <CopyrightLine />
-                    </React.Suspense>
-                    <span className="text-[10px] text-muted-foreground/60">
+                    </Suspense>
+                    <span className="text-muted-foreground/60 text-[10px]">
                         <T>Have a great day!</T>
                     </span>
                 </div>
                 <div className="inline-flex shrink gap-1 md:gap-2">
                     <div className="inline-flex flex-col">
-                        <span className="truncate text-[10px] text-muted-foreground/60">
+                        <span className="text-muted-foreground/60 truncate text-[10px]">
                             {process.env.NEXT_PUBLIC_VERCEL_URL}
                         </span>
                         <Link
-                            className="truncate text-[10px] text-muted-foreground/60 underline underline-offset-4"
+                            className="text-muted-foreground/60 truncate text-[10px] underline underline-offset-4"
                             href="https://github.com/gilsmt/gsmt.link"
                             rel="noreferrer"
                             target="_blank"

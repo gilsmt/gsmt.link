@@ -6,11 +6,18 @@ import {
     BlossomDots,
 } from "@blossom-carousel/react";
 import { cn } from "cn";
-import * as React from "react";
+import {
+    Children,
+    cloneElement,
+    type HTMLAttributes,
+    isValidElement,
+    type PropsWithChildren,
+    useId,
+} from "react";
 
-const Carousel = ({ children }: React.PropsWithChildren) => {
-    const id = React.useId().replaceAll(":", "");
-    const items = React.Children.toArray(children);
+const Carousel = ({ children }: PropsWithChildren) => {
+    const id = useId().replaceAll(":", "");
+    const items = Children.toArray(children);
 
     return (
         <>
@@ -19,20 +26,20 @@ const Carousel = ({ children }: React.PropsWithChildren) => {
                 id={id}
             >
                 {items.map((child, index) =>
-                    React.isValidElement<{ className?: string }>(child)
-                        ? React.cloneElement(child, {
+                    isValidElement<{ className?: string }>(child)
+                        ? cloneElement(child, {
                               className: cn(
-                                  "relative size-full max-w-xs snap-start overflow-hidden rounded-xl bg-card",
+                                  "bg-card relative size-full max-w-xs snap-start overflow-hidden rounded-xl",
                                   index === items.length - 1 && "snap-end",
                                   child.props.className
                               ),
                               "data-blossom-slide": true,
-                          } as React.HTMLAttributes<HTMLElement>)
+                          } as HTMLAttributes<HTMLElement>)
                         : child
                 )}
             </BlossomCarousel>
             <BlossomDots
-                className="justify-start! flex items-center gap-1.5! pt-4"
+                className="flex items-center justify-start! gap-1.5! pt-4"
                 for={id}
             >
                 {({ index, active }) => (
@@ -40,7 +47,7 @@ const Carousel = ({ children }: React.PropsWithChildren) => {
                         aria-current={active}
                         aria-label={`Slide ${index + 1}`}
                         className={cn(
-                            "flex size-7 cursor-pointer select-none items-center justify-center rounded-lg bg-card! font-medium! text-muted-foreground! text-xs! transition-[padding]",
+                            "bg-card! text-muted-foreground! flex size-7 cursor-pointer items-center justify-center rounded-lg text-xs! font-medium! transition-[padding] select-none",
                             active && "bg-red-500! px-2! text-white!"
                         )}
                     >

@@ -6,7 +6,7 @@ import type * as React from "react";
 import "@blossom-carousel/react/style.css";
 import "../globals.css";
 
-const WEBSITE_URL = "https://gsmt.link";
+const WEBSITE_URL = "https://gsmt.dev";
 
 export const metadata: Metadata = {
     alternates: { canonical: "/" },

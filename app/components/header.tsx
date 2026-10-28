@@ -1,5 +1,5 @@
-import { LocaleSelector } from "@components/locale-selector";
 import Link from "next/link";
+import { LocaleSelector } from "@/components/locale-selector";
 
 const Header = ({ locale }: { locale: string }) => {
     const homeHref = locale === "en" ? "/" : `/${locale}`;
@@ -10,7 +10,7 @@ const Header = ({ locale }: { locale: string }) => {
                 className="underline-offset-1 hover:underline hover:opacity-80"
                 href={homeHref}
             >
-                <h1 className="font-medium text-muted-foreground text-sm md:text-base">
+                <h1 className="text-muted-foreground text-sm font-medium md:text-base">
                     @gsmt
                 </h1>
             </Link>

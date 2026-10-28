@@ -35,7 +35,7 @@ const Line = ({
             }}
             aria-hidden
             className={cn(
-                "pointer-events-none absolute origin-center select-none bg-muted-foreground opacity-40 mix-blend-soft-light",
+                "bg-muted-foreground pointer-events-none absolute origin-center opacity-40 mix-blend-soft-light select-none",
                 {
                     "overflow-fade-x -inset-x-11 h-px":
                         variant === "horizontal",

@@ -3,7 +3,7 @@
 import { T, Var } from "gt-next";
 
 const CopyrightLine = () => (
-    <span className="text-[10px] text-muted-foreground/60">
+    <span className="text-muted-foreground/60 text-[10px]">
         <T>
             @ <Var>{new Date().getUTCFullYear()}</Var> GSMT. All rights
             reserved.

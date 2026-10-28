@@ -24,11 +24,11 @@ const LocaleSelector = () => {
             <select
                 aria-label="Change language"
                 className={cn(
-                    "appearance-none rounded-full border border-border bg-transparent py-1 pr-6 pl-2.5",
-                    "font-medium text-muted-foreground text-xs",
+                    "border-border appearance-none rounded-full border bg-transparent py-1 pr-6 pl-2.5",
+                    "text-muted-foreground text-xs font-medium",
                     "transition-colors duration-150",
                     "hover:border-muted-foreground/40 hover:text-foreground",
-                    "focus:border-transparent focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1",
+                    "focus:ring-ring focus:border-transparent focus:ring-2 focus:ring-offset-1 focus:outline-none",
                     "cursor-pointer"
                 )}
                 onChange={handleChange}

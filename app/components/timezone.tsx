@@ -1,20 +1,25 @@
 "use client";
 
 import { T, useLocaleSelector } from "gt-next";
-import * as React from "react";
-import { Clock } from "@/app/components/clock";
-import { dayjs } from "@/app/lib/dayjs";
+import { startTransition, useEffect, useReducer } from "react";
+import { Clock } from "@/components/clock";
+import { dayjs } from "@/lib/dayjs";
 
 const BASE_TIMEZONE = "Europe/Madrid";
+
+function increment(count: number) {
+    return count + 1;
+}
 
 const Timezone = () => {
     const { locale } = useLocaleSelector();
     dayjs.locale(locale);
 
-    const [, forceRender] = React.useState(0);
-    React.useEffect(() => {
+    const [, forceRerender] = useReducer(increment, 0);
+
+    useEffect(() => {
         const intervalId = window.setInterval(
-            () => React.startTransition(() => forceRender((prev) => prev + 1)),
+            () => startTransition(() => forceRerender()),
             5000
         );
         return () => window.clearInterval(intervalId);
@@ -23,14 +28,14 @@ const Timezone = () => {
     return (
         <section className="container mt-20 grid w-full gap-6 md:grid-cols-2">
             <div className="flex w-full flex-col space-y-2">
-                <h3 className="truncate font-semibold text-muted-foreground text-xs">
+                <h3 className="text-muted-foreground truncate text-xs font-semibold">
                     <T>Your timezone</T>
                 </h3>
                 <div className="flex items-center justify-between gap-2 rounded-xl border p-3">
                     <div className="flex items-center space-x-3">
                         <Clock timezone={dayjs.tz.guess()} />
                         <div className="flex flex-col space-y-1">
-                            <span className="font-medium text-muted-foreground text-xs">
+                            <span className="text-muted-foreground text-xs font-medium">
                                 {dayjs.tz.guess()}
                             </span>
                             <span className="text-muted-foreground/75 text-xs">
@@ -39,24 +44,24 @@ const Timezone = () => {
                         </div>
                     </div>
                     <div className="flex flex-col space-y-0.5">
-                        <span className="font-medium text-muted-foreground/90 text-xs">
+                        <span className="text-muted-foreground/90 text-xs font-medium">
                             {dayjs().format("h:mm A")}
                         </span>
-                        <span className="truncate text-muted-foreground/75 text-xs">
+                        <span className="text-muted-foreground/75 truncate text-xs">
                             {dayjs().format("ddd, MMM DD, YYYY")}
                         </span>
                     </div>
                 </div>
             </div>
             <div className="flex w-full flex-col space-y-2">
-                <h3 className="truncate font-semibold text-muted-foreground text-xs">
+                <h3 className="text-muted-foreground truncate text-xs font-semibold">
                     <T>My timezone</T>
                 </h3>
                 <div className="flex items-center justify-between gap-2 rounded-xl border p-3">
                     <div className="flex items-center space-x-3">
                         <Clock timezone={BASE_TIMEZONE} />
                         <div className="flex flex-col space-y-1">
-                            <span className="font-medium text-muted-foreground text-xs">
+                            <span className="text-muted-foreground text-xs font-medium">
                                 {BASE_TIMEZONE}
                             </span>
                             <span className="text-muted-foreground/75 text-xs">
@@ -65,10 +70,10 @@ const Timezone = () => {
                         </div>
                     </div>
                     <div className="flex flex-col space-y-0.5">
-                        <span className="font-medium text-muted-foreground/90 text-xs">
+                        <span className="text-muted-foreground/90 text-xs font-medium">
                             {dayjs().tz(BASE_TIMEZONE).format("h:mm A")}
                         </span>
-                        <span className="truncate text-muted-foreground/75 text-xs">
+                        <span className="text-muted-foreground/75 truncate text-xs">
                             {dayjs()
                                 .tz(BASE_TIMEZONE)
                                 .format("ddd, MMM DD, YYYY")}

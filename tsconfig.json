@@ -19,9 +19,8 @@
         "incremental": true,
         "plugins": [{ "name": "next" }],
         "paths": {
-            "@components/*": ["./app/components/*"],
-            "@lib/*": ["./app/lib/*"],
-            "@/*": ["./*"]
+            "@/components/*": ["./app/components/*"],
+            "@/lib/*": ["./app/lib/*"]
         }
     },
     "include": [

@@ -11,8 +11,8 @@
     "json": { "formatter": { "indentWidth": 4 } },
     "linter": {
         "rules": {
-            "performance": {
-                "noNamespaceImport": "off"
+            "suspicious": {
+                "useBaseline": "off"
             }
         }
     }
