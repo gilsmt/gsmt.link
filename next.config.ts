@@ -9,5 +9,5 @@ export default withBotId(
         getLocalePath: "./get-locale.ts",
         getRegionPath: "./get-region.ts",
         loadTranslationsPath: "./load-translations.ts",
-    }),
+    })
 );
