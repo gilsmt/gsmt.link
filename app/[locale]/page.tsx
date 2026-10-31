@@ -1,7 +1,5 @@
 import { getLocales, T } from "gt-next";
 import {
-    Braces,
-    Bug,
     Check,
     Clipboard,
     Github,
@@ -77,9 +75,12 @@ export default async function HomePage({
                             <T context="Location">Barcelona, Spain</T>
                         </div>
                         <Image
-                            alt=""
-                            className="hidden aspect-square size-16 rounded-sm object-cover sm:block"
+                            alt="Gilberto S."
+                            className="hidden aspect-square size-16 rounded-sm object-cover select-none sm:block"
+                            draggable="false"
                             loading="eager"
+                            placeholder="blur"
+                            preload
                             src={ProfilePicture}
                         />
                     </div>
@@ -152,10 +153,8 @@ export default async function HomePage({
                 </div>
                 <T>
                     <p className="text-foreground text-sm">
-                        I&apos;m a programmer with an eye for design. I like
-                        solving problems{" "}
-                        <Bug className="inline-block size-4 opacity-50" /> with
-                        software. I&apos;m also a{" "}
+                        I&apos;m a programmer with an eye for design. I&apos;m
+                        also a{" "}
                         <a
                             className="underline"
                             href="https://github.com/gilsmt?tab=stars"
@@ -178,14 +177,9 @@ export default async function HomePage({
                 </T>
                 <T>
                     <p className="text-foreground text-sm">
-                        I&apos;ve built data pipelines{" "}
-                        <Braces className="inline-block size-4 opacity-50" />,
-                        web apps and APIs, native applications, shaders, fractal
-                        simulations, data visualizations, and in-app
-                        interactions. I take pride in often owning critical
-                        parts of a product and pushing things forward. I believe
-                        that a strong focus on fundamentals drives the greatest
-                        progress.
+                        I take pride in owning critical parts of a product and
+                        pushing it forward. I believe a strong focus on
+                        fundamentals drives the greatest progress.
                     </p>
                 </T>
                 <T>
@@ -212,6 +206,33 @@ export default async function HomePage({
                 </T>
                 <Suspense>
                     <Carousel>
+                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
+                            <h2 className="text-muted-foreground text-xs font-medium">
+                                Cache App
+                            </h2>
+                            <div className="flex flex-wrap gap-x-4 gap-y-2">
+                                <ExternalLink href="https://www.cachd.app">
+                                    <T>Visit</T>
+                                </ExternalLink>
+                                <ExternalLink href="https://github.com/gilsmt/cache-app">
+                                    <T>View source</T>
+                                </ExternalLink>
+                            </div>
+                            <T>
+                                <p className="text-foreground text-xs">
+                                    Created Cache, a browser-first app that
+                                    brings bookmarks and saved content from
+                                    different platforms into one searchable AI
+                                    workspace. It has around 250 users,
+                                    including 20 paying subscribers. I built the
+                                    data ingestion pipelines, normalized
+                                    metadata across sources, and made search and
+                                    filtering fast on the client. A
+                                    Postgres-backed sync layer keeps it
+                                    responsive with large collections.
+                                </p>
+                            </T>
+                        </div>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
                             <h2 className="text-muted-foreground text-xs font-medium">
                                 ItemIQ
@@ -246,7 +267,7 @@ export default async function HomePage({
                             </ExternalLink>
                             <T>
                                 <p className="text-foreground text-xs">
-                                    Core development team of Infactura, an
+                                    I was a core developer on Infactura, an
                                     online invoicing platform for freelancers
                                     and SMEs in Spain. The focus is compliant
                                     electronic invoicing and faster online
@@ -261,41 +282,14 @@ export default async function HomePage({
                         </div>
                         <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
                             <h2 className="text-muted-foreground text-xs font-medium">
-                                Cache App
-                            </h2>
-                            <div className="flex flex-wrap gap-x-4 gap-y-2">
-                                <ExternalLink href="https://www.cachd.app">
-                                    <T>Visit</T>
-                                </ExternalLink>
-                                <ExternalLink href="https://github.com/gilsmt/cache-app">
-                                    <T>View source</T>
-                                </ExternalLink>
-                            </div>
-                            <T>
-                                <p className="text-foreground text-xs">
-                                    Created the Cache App, a browser-first
-                                    commercial product that pulls bookmarks and
-                                    saved content from different platforms into
-                                    one searchable AI workspace. I built the
-                                    data ingestion pipelines, normalized
-                                    metadata across sources, and made search and
-                                    filtering fast on the client. A
-                                    Postgres-backed sync layer keeps it
-                                    responsive even with a lot of content.
-                                </p>
-                            </T>
-                        </div>
-                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="text-muted-foreground text-xs font-medium">
                                 Accenture summer internship
                             </h2>
                             <T>
                                 <p className="text-foreground text-xs">
-                                    Prototyped an agentic CV-parsing and
-                                    job-matching system with a team. A short
-                                    stint, but a hands-on one: LLM
-                                    orchestration, structured extraction, and
-                                    explainable recommendations.
+                                    Worked with a team to prototype an agentic
+                                    CV-parsing and job-matching system,
+                                    including LLM orchestration, structured
+                                    extraction, and explainable recommendations.
                                 </p>
                             </T>
                         </div>
@@ -319,7 +313,7 @@ export default async function HomePage({
                                     while an AI judge scores persuasion and
                                     coherence. I designed the game loop, the
                                     interface, the low-latency real-time
-                                    interactions, and a LLM-powered evaluation
+                                    interactions, and an LLM-powered evaluation
                                     pipeline so players receive feedback the
                                     second each turn ends.
                                 </p>
@@ -375,8 +369,8 @@ export default async function HomePage({
                                     temporarily disables keyboard and touch
                                     input so you can clean your device safely,
                                     alongside many developer libraries like
-                                    use-selectify, use-gif, and react-bypass...
-                                    I care about ergonomic APIs and small,
+                                    use-selectify, use-gif, and react-bypass… I
+                                    care about ergonomic APIs and small,
                                     well-scoped abstractions.
                                 </p>
                             </T>
@@ -444,7 +438,10 @@ export default async function HomePage({
                 <div className="inline-flex shrink gap-1 md:gap-2">
                     <div className="inline-flex flex-col">
                         <span className="text-muted-foreground/60 truncate text-[10px]">
-                            {process.env.NEXT_PUBLIC_VERCEL_URL}
+                            {
+                                process.env
+                                    .NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+                            }
                         </span>
                         <Link
                             className="text-muted-foreground/60 truncate text-[10px] underline underline-offset-4"

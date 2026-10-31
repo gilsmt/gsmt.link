@@ -16,7 +16,14 @@ const CopyToClipboard = ({
         window.setTimeout(() => setCopied(false), 2000);
     };
 
-    return <Slot data-copied={copied} onClick={copyHandler} {...props} />;
+    return (
+        <>
+            <Slot {...props} data-copied={copied} onClick={copyHandler} />
+            <span aria-live="polite" className="sr-only">
+                {copied ? "Copied" : ""}
+            </span>
+        </>
+    );
 };
 
 export { CopyToClipboard };

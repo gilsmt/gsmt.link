@@ -16,25 +16,19 @@ export const metadata: Metadata = {
     formatDetection: { address: false, telephone: false },
     metadataBase: new URL(WEBSITE_URL),
     openGraph: {
-        description: "",
         locale: "en_US",
         siteName: "gsmt",
-        title: "Gilberto | Full-stack product developer",
+        title: "Gilberto S | Full-stack product developer",
         type: "website",
         url: "/",
     },
     referrer: "origin",
     robots: { noimageindex: true },
     title: {
-        default: "Gilberto | Full-stack product developer",
+        default: "Gilberto S | Full-stack product developer",
         template: "%s | @gsmt",
     },
-    twitter: {
-        card: "summary",
-        creator: "@gsmmtt",
-        description: "",
-        title: "Gilberto | Full-stack product developer",
-    },
+    twitter: { card: "summary", creator: "@gsmmtt" },
 };
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -43,7 +37,6 @@ const serif = Source_Serif_4({ subsets: ["latin"], variable: "--font-serif" });
 export const viewport: Viewport = {
     colorScheme: "light",
     initialScale: 1,
-    minimumScale: 1,
     themeColor: "#ffffff",
     viewportFit: "cover",
     width: "device-width",

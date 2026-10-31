@@ -10,9 +10,9 @@ const Header = ({ locale }: { locale: string }) => {
                 className="underline-offset-1 hover:underline hover:opacity-80"
                 href={homeHref}
             >
-                <h1 className="text-muted-foreground text-sm font-medium md:text-base">
+                <span className="text-muted-foreground text-sm font-medium md:text-base">
                     @gsmt
-                </h1>
+                </span>
             </Link>
             <LocaleSelector />
         </header>
