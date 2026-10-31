@@ -223,9 +223,8 @@ export default async function HomePage({
                                     Created Cache, a browser-first app that
                                     brings bookmarks and saved content from
                                     different platforms into one searchable AI
-                                    workspace. It has around 250 users,
-                                    including 20 paying subscribers. I built the
-                                    data ingestion pipelines, normalized
+                                    workspace. It has over 250 users. I built
+                                    the data ingestion pipelines, normalized
                                     metadata across sources, and made search and
                                     filtering fast on the client. A
                                     Postgres-backed sync layer keeps it
