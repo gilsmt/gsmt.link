@@ -1,4 +1,5 @@
 import { getLocales, T } from "gt-next";
+import Link from "gt-next/link";
 import {
     Check,
     Clipboard,
@@ -11,11 +12,10 @@ import {
 } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { Suspense } from "react";
 import { Carousel } from "@/components/carousel";
 import { CopyToClipboard } from "@/components/copy-to-clipboard";
-import { CopyrightLine } from "@/components/copyright-line";
+import { Copyright } from "@/components/copyright";
 import { ExternalLink } from "@/components/external-link";
 import { Header } from "@/components/header";
 import { Line } from "@/components/line";
@@ -23,27 +23,21 @@ import { Monogram } from "@/components/monogram";
 import { PageShell } from "@/components/page-shell";
 import { Signature } from "@/components/signature";
 import { Timezone } from "@/components/timezone";
-import { TodayDate } from "@/components/today-date";
+import { Today } from "@/components/today";
 import ProfilePicture from "../../public/pfp.jpg";
 
 export const metadata: Metadata = {
     title: "Gilberto S.",
 };
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
     return getLocales().map((locale) => ({ locale }));
 }
 
-export default async function HomePage({
-    params,
-}: {
-    params: Promise<{ locale: string }>;
-}) {
-    const { locale } = await params;
-
+export default function HomePage() {
     return (
         <PageShell>
-            <Header locale={locale} />
+            <Header />
             <section className="relative container mt-16 flex w-full items-end justify-between">
                 <Line className="-top-20 left-5" variant="vertical" />
                 <Line className="-top-20 right-5" variant="vertical" />
@@ -72,7 +66,7 @@ export default async function HomePage({
                     <div className="flex items-end justify-end gap-4">
                         <div className="text-foreground flex items-center justify-end gap-1 font-serif text-xs whitespace-pre-wrap">
                             <MapPin className="size-3.5" />
-                            <T context="Location">Barcelona, Spain</T>
+                            <T>Barcelona, Spain</T>
                         </div>
                         <Image
                             alt="Gilberto S."
@@ -100,7 +94,7 @@ export default async function HomePage({
                             </span>
                             gsmt.dev@gmail.com
                         </Link>
-                        <CopyToClipboard text="gsmt.dev@gmail.com">
+                        <CopyToClipboard value="gsmt.dev@gmail.com">
                             <button
                                 aria-label="Copy email"
                                 className="group/btn bg-card absolute right-2 z-10 inline-flex size-5 items-center justify-center rounded-[40%] p-3 group-hover:opacity-75 hover:opacity-100 active:opacity-50"
@@ -143,7 +137,7 @@ export default async function HomePage({
                         <T>Today</T>
                         <span className="ml-3 inline-block font-serif opacity-50">
                             <Suspense fallback={<span>—</span>}>
-                                <TodayDate />
+                                <Today />
                             </Suspense>
                         </span>
                     </h2>
@@ -204,210 +198,201 @@ export default async function HomePage({
                         applications that are both challenging and rewarding.
                     </p>
                 </T>
-                <Suspense>
-                    <Carousel>
-                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="text-muted-foreground text-xs font-medium">
-                                Cache App
-                            </h2>
-                            <div className="flex flex-wrap gap-x-4 gap-y-2">
-                                <ExternalLink href="https://www.cachd.app">
-                                    <T>Visit</T>
-                                </ExternalLink>
-                                <ExternalLink href="https://github.com/gilsmt/cache-app">
-                                    <T>View source</T>
-                                </ExternalLink>
-                            </div>
-                            <T>
-                                <p className="text-foreground text-xs">
-                                    Created Cache, a browser-first app that
-                                    brings bookmarks and saved content from
-                                    different platforms into one searchable AI
-                                    workspace. It has over 250 users. I built
-                                    the data ingestion pipelines, normalized
-                                    metadata across sources, and made search and
-                                    filtering fast on the client. A
-                                    Postgres-backed sync layer keeps it
-                                    responsive with large collections.
-                                </p>
-                            </T>
-                        </div>
-                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="text-muted-foreground text-xs font-medium">
-                                ItemIQ
-                            </h2>
-                            <ExternalLink href="https://item-iq.com/">
+                <Carousel>
+                    <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4 md:p-5">
+                        <h2 className="text-muted-foreground text-xs font-medium">
+                            Cache App
+                        </h2>
+                        <div className="flex flex-wrap gap-x-4 gap-y-2">
+                            <ExternalLink href="https://www.cachd.app">
                                 <T>Visit</T>
                             </ExternalLink>
-                            <T>
-                                <p className="text-foreground text-xs">
-                                    Built the foundations of a platform for
-                                    Amazon FBA and FBM sellers, replacing
-                                    spreadsheet-heavy catalog workflows with
-                                    automated profit analysis, opportunity
-                                    detection, and restocking suggestions. I
-                                    designed and implemented core backend and
-                                    data pipelines in Python and TypeScript,
-                                    covering ASIN ingestion, SP-API integration,
-                                    fee and margin computation, and issue
-                                    detection. Sellers use it to monitor
-                                    thousands of ASINs, catch suppressed Buy
-                                    Boxes and miscategorized listings, and save
-                                    money.
-                                </p>
-                            </T>
+                            <ExternalLink href="https://github.com/gilsmt/cache-app">
+                                <T>View source</T>
+                            </ExternalLink>
                         </div>
-                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="text-muted-foreground text-xs font-medium">
-                                Infactura
-                            </h2>
-                            <ExternalLink href="https://infactura.com">
+                        <T>
+                            <p className="text-foreground text-xs">
+                                Created Cache, a browser-first app that brings
+                                bookmarks and saved content from different
+                                platforms into one searchable AI workspace. It
+                                has over 250 users. I built the data ingestion
+                                pipelines, normalized metadata across sources,
+                                and made search and filtering fast on the
+                                client. A Postgres-backed sync layer keeps it
+                                responsive with large collections.
+                            </p>
+                        </T>
+                    </div>
+                    <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4 md:p-5">
+                        <h2 className="text-muted-foreground text-xs font-medium">
+                            ItemIQ
+                        </h2>
+                        <ExternalLink href="https://item-iq.com/">
+                            <T>Visit</T>
+                        </ExternalLink>
+                        <T>
+                            <p className="text-foreground text-xs">
+                                Built the foundations of a platform for Amazon
+                                FBA and FBM sellers, replacing spreadsheet-heavy
+                                catalog workflows with automated profit
+                                analysis, opportunity detection, and restocking
+                                suggestions. I designed and implemented core
+                                backend and data pipelines in Python and
+                                TypeScript, covering ASIN ingestion, SP-API
+                                integration, fee and margin computation, and
+                                issue detection. Sellers use it to monitor
+                                thousands of ASINs, catch suppressed Buy Boxes
+                                and miscategorized listings, and save money.
+                            </p>
+                        </T>
+                    </div>
+                    <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4 md:p-5">
+                        <h2 className="text-muted-foreground text-xs font-medium">
+                            Infactura
+                        </h2>
+                        <ExternalLink href="https://infactura.com">
+                            <T>Visit</T>
+                        </ExternalLink>
+                        <T>
+                            <p className="text-foreground text-xs">
+                                I was a core developer on Infactura, an online
+                                invoicing platform for freelancers and SMEs in
+                                Spain. The focus is compliant electronic
+                                invoicing and faster online payments. I helped
+                                build the multi-tenant app with TypeScript,
+                                React, Next.js, Prisma, and Postgres, including
+                                invoice templating, recurring billing, payment
+                                links, and tax logic. I put real care into the
+                                UX, typography, and branded documents.
+                            </p>
+                        </T>
+                    </div>
+                    <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4 md:p-5">
+                        <h2 className="text-muted-foreground text-xs font-medium">
+                            Accenture summer internship
+                        </h2>
+                        <T>
+                            <p className="text-foreground text-xs">
+                                Worked with a team to prototype an agentic
+                                CV-parsing and job-matching system, including
+                                LLM orchestration, structured extraction, and
+                                explainable recommendations.
+                            </p>
+                        </T>
+                    </div>
+                    <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4 md:p-5">
+                        <h2 className="text-muted-foreground text-xs font-medium">
+                            MinuteDebate
+                        </h2>
+                        <div className="flex flex-wrap gap-x-4 gap-y-2">
+                            <ExternalLink href="https://minutedebate.com">
                                 <T>Visit</T>
                             </ExternalLink>
-                            <T>
-                                <p className="text-foreground text-xs">
-                                    I was a core developer on Infactura, an
-                                    online invoicing platform for freelancers
-                                    and SMEs in Spain. The focus is compliant
-                                    electronic invoicing and faster online
-                                    payments. I helped build the multi-tenant
-                                    app with TypeScript, React, Next.js, Prisma,
-                                    and Postgres, including invoice templating,
-                                    recurring billing, payment links, and tax
-                                    logic. I put real care into the UX,
-                                    typography, and branded documents.
-                                </p>
-                            </T>
+                            <ExternalLink href="https://github.com/gilsmt/minutedebate">
+                                <T>View source</T>
+                            </ExternalLink>
                         </div>
-                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
+                        <T>
+                            <p className="text-foreground text-xs">
+                                Created MinuteDebate, a real-time debating game
+                                where two anonymous players argue a randomly
+                                assigned topic for 60 seconds each while an AI
+                                judge scores persuasion and coherence. I
+                                designed the game loop, the interface, the
+                                low-latency real-time interactions, and an
+                                LLM-powered evaluation pipeline so players
+                                receive feedback the second each turn ends.
+                            </p>
+                        </T>
+                    </div>
+                    <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4 md:p-5">
+                        <h2 className="text-muted-foreground text-xs font-medium">
+                            gsmt.dev
+                        </h2>
+                        <div className="flex flex-wrap gap-x-4 gap-y-2">
+                            <ExternalLink href="https://gsmt.dev">
+                                <T>Visit</T>
+                            </ExternalLink>
+                            <ExternalLink href="https://github.com/gilsmt/gsmt">
+                                <T>View source</T>
+                            </ExternalLink>
+                        </div>
+                        <T>
+                            <p className="text-foreground text-xs">
+                                Designed and developed as my portfolio and a
+                                live playground for interaction design,
+                                typography, and performance experiments. I test
+                                animations, layout systems, and component
+                                abstractions here before they make it into real
+                                work.
+                            </p>
+                        </T>
+                    </div>
+                    <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4 md:p-5">
+                        <T>
                             <h2 className="text-muted-foreground text-xs font-medium">
-                                Accenture summer internship
+                                Developer tools & UI utilities
                             </h2>
-                            <T>
-                                <p className="text-foreground text-xs">
-                                    Worked with a team to prototype an agentic
-                                    CV-parsing and job-matching system,
-                                    including LLM orchestration, structured
-                                    extraction, and explainable recommendations.
-                                </p>
-                            </T>
+                        </T>
+                        <div className="flex flex-wrap gap-x-4 gap-y-2">
+                            <ExternalLink href="https://github.com/gilsmt/cleaning-mode">
+                                cleaning-mode
+                            </ExternalLink>
+                            <ExternalLink href="https://useselectify.js.org/">
+                                use-selectify
+                            </ExternalLink>
+                            <ExternalLink href="https://github.com/gilsmt/use-gif">
+                                use-gif
+                            </ExternalLink>
+                            <ExternalLink href="https://github.com/gilsmt/react-bypass">
+                                react-bypass
+                            </ExternalLink>
                         </div>
-                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
+                        <T>
+                            <p className="text-foreground text-xs">
+                                Built minimalist power tools, like
+                                cleaning-mode, an Electron utility that
+                                temporarily disables keyboard and touch input so
+                                you can clean your device safely, alongside many
+                                developer libraries like use-selectify, use-gif,
+                                and react-bypass… I care about ergonomic APIs
+                                and small, well-scoped abstractions.
+                            </p>
+                        </T>
+                    </div>
+                    <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4 md:p-5">
+                        <T>
                             <h2 className="text-muted-foreground text-xs font-medium">
-                                MinuteDebate
+                                Creative coding & simulations
                             </h2>
-                            <div className="flex flex-wrap gap-x-4 gap-y-2">
-                                <ExternalLink href="https://minutedebate.com">
-                                    <T>Visit</T>
-                                </ExternalLink>
-                                <ExternalLink href="https://github.com/gilsmt/minutedebate">
-                                    <T>View source</T>
-                                </ExternalLink>
-                            </div>
-                            <T>
-                                <p className="text-foreground text-xs">
-                                    Created MinuteDebate, a real-time debating
-                                    game where two anonymous players argue a
-                                    randomly assigned topic for 60 seconds each
-                                    while an AI judge scores persuasion and
-                                    coherence. I designed the game loop, the
-                                    interface, the low-latency real-time
-                                    interactions, and an LLM-powered evaluation
-                                    pipeline so players receive feedback the
-                                    second each turn ends.
-                                </p>
-                            </T>
+                        </T>
+                        <div className="flex flex-wrap gap-x-4 gap-y-2">
+                            <ExternalLink href="https://github.com/gilsmt/mandelbrot">
+                                mandelbrot
+                            </ExternalLink>
+                            <ExternalLink href="https://github.com/gilsmt/chaos-equations">
+                                chaos-equations
+                            </ExternalLink>
+                            <ExternalLink href="https://github.com/gilsmt/fractals">
+                                fractals
+                            </ExternalLink>
+                            <ExternalLink href="https://github.com/gilsmt/base-ui-masonry">
+                                base-ui-masonry
+                            </ExternalLink>
                         </div>
-                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <h2 className="text-muted-foreground text-xs font-medium">
-                                gsmt.dev
-                            </h2>
-                            <div className="flex flex-wrap gap-x-4 gap-y-2">
-                                <ExternalLink href="https://gsmt.dev">
-                                    <T>Visit</T>
-                                </ExternalLink>
-                                <ExternalLink href="https://github.com/gilsmt/gsmt">
-                                    <T>View source</T>
-                                </ExternalLink>
-                            </div>
-                            <T>
-                                <p className="text-foreground text-xs">
-                                    Designed and developed as my portfolio and a
-                                    live playground for interaction design,
-                                    typography, and performance experiments. I
-                                    test animations, layout systems, and
-                                    component abstractions here before they make
-                                    it into real work.
-                                </p>
-                            </T>
-                        </div>
-                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <T>
-                                <h2 className="text-muted-foreground text-xs font-medium">
-                                    Developer tools & UI utilities
-                                </h2>
-                            </T>
-                            <div className="flex flex-wrap gap-x-4 gap-y-2">
-                                <ExternalLink href="https://github.com/gilsmt/cleaning-mode">
-                                    cleaning-mode
-                                </ExternalLink>
-                                <ExternalLink href="https://useselectify.js.org/">
-                                    use-selectify
-                                </ExternalLink>
-                                <ExternalLink href="https://github.com/gilsmt/use-gif">
-                                    use-gif
-                                </ExternalLink>
-                                <ExternalLink href="https://github.com/gilsmt/react-bypass">
-                                    react-bypass
-                                </ExternalLink>
-                            </div>
-                            <T>
-                                <p className="text-foreground text-xs">
-                                    Built minimalist power tools, like
-                                    cleaning-mode, an Electron utility that
-                                    temporarily disables keyboard and touch
-                                    input so you can clean your device safely,
-                                    alongside many developer libraries like
-                                    use-selectify, use-gif, and react-bypass… I
-                                    care about ergonomic APIs and small,
-                                    well-scoped abstractions.
-                                </p>
-                            </T>
-                        </div>
-                        <div className="flex h-max min-h-full flex-1 flex-col gap-y-4 p-4">
-                            <T>
-                                <h2 className="text-muted-foreground text-xs font-medium">
-                                    Creative coding & simulations
-                                </h2>
-                            </T>
-                            <div className="flex flex-wrap gap-x-4 gap-y-2">
-                                <ExternalLink href="https://github.com/gilsmt/mandelbrot">
-                                    mandelbrot
-                                </ExternalLink>
-                                <ExternalLink href="https://github.com/gilsmt/chaos-equations">
-                                    chaos-equations
-                                </ExternalLink>
-                                <ExternalLink href="https://github.com/gilsmt/fractals">
-                                    fractals
-                                </ExternalLink>
-                                <ExternalLink href="https://github.com/gilsmt/base-ui-masonry">
-                                    base-ui-masonry
-                                </ExternalLink>
-                            </div>
-                            <T>
-                                <p className="text-foreground text-xs">
-                                    Created a range of creative coding
-                                    experiments including Mandelbrot fractal
-                                    renderers, chaos-equation visualizers,
-                                    shaders, and fluid and particle simulations.
-                                    These explorations pushed my understanding
-                                    of WebGL, canvas, numerical methods, and
-                                    browser performance.
-                                </p>
-                            </T>
-                        </div>
-                    </Carousel>
-                </Suspense>
+                        <T>
+                            <p className="text-foreground text-xs">
+                                Created a range of creative coding experiments
+                                including Mandelbrot fractal renderers,
+                                chaos-equation visualizers, shaders, and fluid
+                                and particle simulations. These explorations
+                                pushed my understanding of WebGL, canvas,
+                                numerical methods, and browser performance.
+                            </p>
+                        </T>
+                    </div>
+                </Carousel>
             </section>
             <Suspense
                 fallback={
@@ -428,7 +413,7 @@ export default async function HomePage({
                             </span>
                         }
                     >
-                        <CopyrightLine />
+                        <Copyright />
                     </Suspense>
                     <span className="text-muted-foreground/60 text-[10px]">
                         <T>Have a great day!</T>

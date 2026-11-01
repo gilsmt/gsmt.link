@@ -17,6 +17,7 @@ import {
 
 const Carousel = ({ children }: PropsWithChildren) => {
     const id = useId().replaceAll(":", "");
+
     const items = Children.toArray(children);
 
     return (

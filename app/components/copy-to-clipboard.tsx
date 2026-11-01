@@ -5,22 +5,22 @@ import copy from "copy-to-clipboard";
 import { type ComponentProps, useState } from "react";
 
 const CopyToClipboard = ({
-    text,
+    value,
     ...props
-}: ComponentProps<typeof Slot> & { text: string }) => {
-    const [copied, setCopied] = useState(false);
+}: ComponentProps<typeof Slot> & { value: string }) => {
+    const [isCopied, setIsCopied] = useState(false);
 
     const copyHandler = async () => {
-        await copy(text);
-        setCopied(true);
-        window.setTimeout(() => setCopied(false), 2000);
+        await copy(value);
+        setIsCopied(true);
+        window.setTimeout(() => setIsCopied(false), 2000);
     };
 
     return (
         <>
-            <Slot {...props} data-copied={copied} onClick={copyHandler} />
+            <Slot {...props} data-copied={isCopied} onClick={copyHandler} />
             <span aria-live="polite" className="sr-only">
-                {copied ? "Copied" : ""}
+                {isCopied ? "Copied" : ""}
             </span>
         </>
     );

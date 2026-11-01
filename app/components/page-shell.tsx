@@ -10,7 +10,7 @@ const PageShell = (props: React.ComponentProps<"main">) => (
         </a>
         <main
             {...props}
-            className="gutter-stable focus-visible:outline-ring relative isolate z-0 h-fit w-full max-w-full min-w-0 flex-1 flex-col overflow-x-clip py-6 [-webkit-user-drag:none] focus-visible:outline-2 focus-visible:outline-offset-4"
+            className="relative isolate z-0 h-fit w-full max-w-full min-w-0 flex-1 scrollbar-gutter-stable flex-col overflow-x-clip py-6 [-webkit-user-drag:none] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-none"
             id="main"
             tabIndex={-1}
         />

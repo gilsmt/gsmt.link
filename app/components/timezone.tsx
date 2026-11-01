@@ -1,6 +1,6 @@
 "use client";
 
-import { T, useLocaleSelector } from "gt-next";
+import { T, useLocale } from "gt-next";
 import { startTransition, useEffect, useReducer } from "react";
 import { Clock } from "@/components/clock";
 import { dayjs } from "@/lib/dayjs";
@@ -12,7 +12,7 @@ function increment(count: number) {
 }
 
 const Timezone = () => {
-    const { locale } = useLocaleSelector();
+    const locale = useLocale();
     dayjs.locale(locale);
 
     const [, forceRerender] = useReducer(increment, 0);

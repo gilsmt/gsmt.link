@@ -5,7 +5,6 @@
         "ultracite/biome/next",
         "ultracite/biome/react"
     ],
-    "files": { "includes": ["!**/public"] },
     "formatter": { "indentWidth": 4 },
     "javascript": { "formatter": { "indentWidth": 4 } },
     "json": { "formatter": { "indentWidth": 4 } },
