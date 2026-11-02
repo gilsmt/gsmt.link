@@ -43,7 +43,6 @@
     html,
     body {
         @apply h-full w-full overflow-x-hidden;
-        overscroll-behavior: none;
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
         font-synthesis-weight: none;
